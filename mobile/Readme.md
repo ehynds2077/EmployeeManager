@@ -1,9 +1,6 @@
-# NativeBase TypeScript Expo Template
-
-The official NativeBase TypeScript template for [Expo](https://docs.expo.io/)
+# EmployeeManager Mobile App
 
 ## Usage
 
-```sh
-expo init my-app --template @native-base/expo-template-typescript
-```
+- Install by running `yarn install`
+- Run the app using `yarn start`

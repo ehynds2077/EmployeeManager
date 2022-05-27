@@ -1,0 +1,33 @@
+# For development.  Optimizations will be made for production
+version: "3"
+services:
+  # Db container
+  db:
+    image: postgres
+    volumes:
+      # Bind data directory to local directory for persistence through container reboots
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file:
+      - .common.env
+      - .db.env
+
+  # Api server container
+  api:
+    build: .
+    volumes:
+      # Bind src directory for automatic reloads
+      - ./src:/usr/src/app/src
+
+      # Create volumes to prevent directories from being copied/overwritten
+      - /usr/src/app/node_modules/
+      - /usr/src/app/pgdata
+    ports:
+      - "4000:4000"
+    env_file:
+      - .common.env
+      - .api.env
+    depends_on:
+      - db
+    command: ["yarn", "dev"]

@@ -11,6 +11,6 @@ export const verifyJWT = (token: string): string | null => {
 };
 
 export const signJWT = (id: string): string => {
-  const token = jwt.sign(id, config.JWT_SECRET);
+  const token = jwt.sign({ id }, config.JWT_SECRET);
   return token;
 };

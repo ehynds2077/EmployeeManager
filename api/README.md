@@ -19,3 +19,7 @@ Examples are provided with the proper environment variables to include in the `a
 
 - From the `api` directory, run `docker-compose up`
 - API listens by default on port 4000
+
+## Production
+
+- Set `NODE_ENV=production` in the `.api.env` file

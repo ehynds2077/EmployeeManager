@@ -4,11 +4,9 @@
 
 - Docker
 
-## Installation
+Tested using Docker version 20.10.13, build a224086
 
-- From the `api` directory, run `docker-compose up`
-
-## Development Configuration/Environment
+## Development Environment Configuration
 
 Create the following files:
 
@@ -19,4 +17,5 @@ Examples are provided with the proper environment variables to include in the `a
 
 ## Usage
 
+- From the `api` directory, run `docker-compose up`
 - API listens by default on port 4000

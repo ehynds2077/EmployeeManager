@@ -26,15 +26,36 @@ pg.raw("SELECT 1")
 const initSchema = async () => {
   const schema = pg.schema.withSchema("public");
   await schema.createTable("user", (table) => {
-    table.string("name");
+    table.string("fName");
+    table.string("lName");
+    table.string("password").notNullable();
+    table.string("email").unique().notNullable();
+    table
+      .uuid("id")
+      .primary()
+      .unique()
+      .defaultTo(pg.raw("(gen_random_uuid())"));
   });
 };
 
 const initDb = async () => {
   await initSchema();
-  await pg.table("user").insert({ name: "test 1" });
-  await pg.table("user").insert({ name: "test 2222222" });
-  await pg.table("user").insert({ name: "test 3333333" });
+  await pg
+    .table("user")
+    .insert({
+      fName: "test 1",
+      lName: "last",
+      password: "yo",
+      email: "yo@yo.com",
+    });
+  await pg
+    .table("user")
+    .insert({
+      fName: "test 2222222",
+      lName: "last22",
+      password: "yyoooo",
+      email: "asdf@yao.com",
+    });
 };
 
 export const testDb = async () => {

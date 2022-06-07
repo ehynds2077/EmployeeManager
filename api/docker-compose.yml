@@ -11,7 +11,13 @@ services:
       - "5432:5432"
     env_file:
       - .common.env
-
+  adminer:
+    depends_on:
+      - db
+    image: adminer
+    restart: always
+    ports:
+      - 8090:8080
   # Api server container
   api:
     build: .

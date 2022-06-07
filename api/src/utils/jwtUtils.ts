@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { config } from "../config";
+import { config } from "../../config";
 
 export const verifyJWT = (token: string): string | null => {
   const decoded = jwt.verify(token, config.JWT_SECRET) as any;

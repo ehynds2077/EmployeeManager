@@ -1,5 +1,5 @@
 import knex from "knex";
-import { config } from "../config";
+import { config } from "../../config";
 
 const pg = knex({
   client: "pg",
@@ -40,22 +40,18 @@ const initSchema = async () => {
 
 const initDb = async () => {
   await initSchema();
-  await pg
-    .table("user")
-    .insert({
-      fName: "test 1",
-      lName: "last",
-      password: "yo",
-      email: "yo@yo.com",
-    });
-  await pg
-    .table("user")
-    .insert({
-      fName: "test 2222222",
-      lName: "last22",
-      password: "yyoooo",
-      email: "asdf@yao.com",
-    });
+  await pg.table("user").insert({
+    fName: "test 1",
+    lName: "last",
+    password: "yo",
+    email: "yo@yo.com",
+  });
+  await pg.table("user").insert({
+    fName: "test 2222222",
+    lName: "last22",
+    password: "yyoooo",
+    email: "asdf@yao.com",
+  });
 };
 
 export const testDb = async () => {

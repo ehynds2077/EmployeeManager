@@ -10,5 +10,5 @@
   "ts-node": {
     "files": true
   },
-  "include": ["src/**/*.ts", "environment.d.ts"]
+  "include": ["src/**/*.ts", "environment.d.ts", "./**/*.ts"]
 }

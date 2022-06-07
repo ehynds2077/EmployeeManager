@@ -12,7 +12,7 @@ module.exports = {
     },
     acquireConnectionTimeout: 400000,
     migrations: {
-      directory: "/migrations",
+      directory: "migrations",
     },
   },
 };

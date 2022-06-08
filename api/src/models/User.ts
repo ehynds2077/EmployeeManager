@@ -1,3 +1,4 @@
+import knex from "knex";
 import pg from "../db";
 
 const tableName = "user";
@@ -26,4 +27,26 @@ export const getUserByID = async (id: string) => {
   } else {
     return null;
   }
+};
+
+export const addUser = async (
+  fName: string,
+  lName: string,
+  email: string,
+  password: string,
+  rate: number,
+  admin: boolean
+) => {
+  console.log("AddUser!!");
+  const result = await pg.table("user").insert({
+    first_name: fName,
+    last_name: lName,
+    email: email,
+    hourly_rate: rate,
+    password: password,
+    is_admin: admin,
+  });
+  console.log(result);
+
+  console.log("User added");
 };

@@ -57,23 +57,18 @@ export const register = async (
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
     const hashedPass = await bcrypt.hash(password, salt);
+    req.body.password = hashedPass;
 
     const existing = await getUserByEmail(email);
     if (existing) {
       throw new Error("User with this email already exists");
     }
-
-    const result = await pg.table("user").insert({
-      email,
-      password: hashedPass,
-      first_name,
-      last_name,
-      is_admin: false,
-    });
-
-    console.log(result);
-
-    res.status(200).send();
+    next();
+    if (req.body.approved) {
+      res.status(200).send();
+    } else {
+      res.status(403).send();
+    }
   } catch (err) {
     next(err);
   }

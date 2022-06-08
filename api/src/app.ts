@@ -1,9 +1,9 @@
 import express from "express";
 import { router } from "./routes";
-// import { testDb } from "./services/db";
-// import pg from "./services/db";
+import { testDb } from "./db";
+import pg from "./db";
 
-// testDb();
+testDb();
 
 const app = express();
 

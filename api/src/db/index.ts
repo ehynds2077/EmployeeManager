@@ -1,27 +1,18 @@
-// import knex from "knex";
-// import { config } from "../../config";
+import knex from "knex";
+import { config } from "../config";
+import { development } from "./knexfile";
 
-// const pg = knex({
-//   client: "pg",
-//   connection: {
-//     host: "db",
-//     port: 5432,
-//     user: config.POSTGRES_USER,
-//     password: config.POSTGRES_PASSWORD,
-//     database: config.POSTGRES_DB,
-//   },
-//   acquireConnectionTimeout: 400000,
-// });
+const pg = knex(development);
 
-// // Test connection
-// pg.raw("SELECT 1")
-//   .then(() => {
-//     console.log("postgres connected");
-//   })
-//   .catch((e) => {
-//     console.log("postgres not connected");
-//     console.log(e);
-//   });
+// Test connection
+pg.raw("SELECT 1")
+  .then(() => {
+    console.log("postgres connected");
+  })
+  .catch((e) => {
+    console.log("postgres not connected");
+    console.log(e);
+  });
 
 // const initSchema = async () => {
 //   const schema = pg.schema.withSchema("public");
@@ -54,14 +45,17 @@
 //   });
 // };
 
-// export const testDb = async () => {
-//   const exists = await pg.schema.hasTable("user");
-//   if (!exists) {
-//     await initDb();
-//   }
+export const testDb = async () => {
+  const migrateRes = await pg.migrate.latest();
+  console.log(migrateRes);
 
-//   const users = await pg.select().table("user");
-//   console.log(users);
-// };
+  // const exists = await pg.schema.hasTable("user");
+  // if (!exists) {
+  //   await initDb();
+  // }
 
-// export default pg;
+  // const users = await pg.select().table("user");
+  // console.log(users);
+};
+
+export default pg;

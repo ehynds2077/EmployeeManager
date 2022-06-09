@@ -1,20 +1,19 @@
 import { NextFunction, Request, Response } from "express";
-import { addUser } from "../models/User";
+import { checkList } from "../models/Whitelist";
 
 export const approve = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { email, password, first_name, last_name } = req.body;
-  req.body.approved = false;
+  console.log("Middleware");
+  const email = req.body.email;
+  console.log(email);
 
-  var approved: boolean = true;
-
-  if (approved) {
-    var rate: number = 20.0;
-    var admin: boolean = false;
-    addUser(first_name, last_name, email, password, rate, admin);
-    req.body.approved = true;
+  const result = await checkList(email);
+  if (!result) {
+    res.status(403).send();
+  } else {
+    next();
   }
 };

@@ -4,7 +4,7 @@
   "main": "./src/server.ts",
   "scripts": {
     "dev": "nodemon ./src/server.ts",
-    "migrate:make": "yarn knex --migrations-directory ./migrations --knexfile ./src/services/db/knexfile.ts migrate:make"
+    "migrate:make": "yarn knex --migrations-directory ./migrations --knexfile ./src/db/knexfile.ts migrate:make"
   },
   "license": "MIT",
   "devDependencies": {

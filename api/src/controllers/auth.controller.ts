@@ -1,6 +1,8 @@
 import bcrypt from "bcrypt";
 import { NextFunction, Request, Response } from "express";
-import { getUserByEmail, User } from "../models/User";
+import { addUser, getUserByEmail, User } from "../models/User";
+import { addEmail } from "../models/Whitelist";
+import { checkList } from "../models/Whitelist";
 
 import pg from "../db";
 import { signJWT } from "../utils/jwtUtils";
@@ -63,13 +65,34 @@ export const register = async (
     if (existing) {
       throw new Error("User with this email already exists");
     }
-    next();
-    if (req.body.approved) {
-      res.status(200).send();
-    } else {
-      res.status(403).send();
-    }
+    // need to add hourly rate and password
+    //addUser(first_name, last_name, email, password)
   } catch (err) {
+    next(err);
+  }
+};
+
+export const addApproved = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { email } = req.body;
+  try {
+    if (!email) {
+      throw new Error("Enter Email Address");
+    }
+
+    const check = await checkList(email);
+
+    if (email == check.email) {
+      throw new Error("Email already exists");
+    }
+
+    addEmail(email);
+    res.status(200).send();
+  } catch (err) {
+    res.status(401);
     next(err);
   }
 };

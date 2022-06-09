@@ -37,8 +37,7 @@ export const addUser = async (
   rate: number,
   admin: boolean
 ) => {
-  console.log("AddUser!!");
-  const result = await pg.table("user").insert({
+  const result = await pg.table(tableName).insert({
     first_name: fName,
     last_name: lName,
     email: email,
@@ -47,6 +46,4 @@ export const addUser = async (
     is_admin: admin,
   });
   console.log(result);
-
-  console.log("User added");
 };

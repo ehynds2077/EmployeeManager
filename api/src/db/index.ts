@@ -1,6 +1,6 @@
 import knex from "knex";
 import { config } from "../config";
-import { development } from "./knexfile";
+import { development } from "../../knexfile";
 
 const pg = knex(development);
 

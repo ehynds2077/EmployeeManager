@@ -4,7 +4,9 @@
   "main": "./src/server.ts",
   "scripts": {
     "dev": "nodemon ./src/server.ts",
-    "migrate:make": "yarn knex --migrations-directory ./migrations --knexfile ./src/db/knexfile.ts migrate:make"
+    "migrate:make": "yarn knex migrate:make",
+    "migrate:rollback": "docker-compose run api yarn knex migrate:rollback --all",
+    "migrate:latest": "docker-compose run api yarn knex migrate:latest"
   },
   "license": "MIT",
   "devDependencies": {

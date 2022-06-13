@@ -43,8 +43,8 @@ export async function up(knex: Knex): Promise<void> {
 
 export async function down(knex: Knex): Promise<void> {
   await Promise.all(
-    ["user", "timesheet_entry", "bonus_item", "includes"].map((tableName) => {
-      knex.schema.dropTableIfExists(tableName);
+    ["includes", "timesheet_entry", "user", "bonus_item"].map((tableName) => {
+      return knex.schema.dropTableIfExists(tableName);
     })
   );
 }

@@ -1,4 +1,7 @@
-import { config } from "../config";
+import { config } from "./src/config";
+import * as path from "path";
+
+const BASE_PATH = path.join(__dirname, "src", "db");
 
 export const development = {
   client: "pg",
@@ -11,7 +14,7 @@ export const development = {
   },
   acquireConnectionTimeout: 400000,
   migrations: {
-    directory: "./src/db/migrations",
+    directory: path.join(BASE_PATH, "migrations"),
   },
 };
 

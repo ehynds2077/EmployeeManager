@@ -1,14 +1,23 @@
 import { Knex } from "knex";
 
 export async function up(knex: Knex): Promise<void> {
-  await knex.schema.createTable("user", (table) => {
+  await knex.schema.createTable("email", (table) => {
     table.increments().notNullable();
+    table.string("email").unique().notNullable();
+  });
+  await knex.schema.createTable("user", (table) => {
+    table.increments("id").notNullable();
     table.string("first_name").notNullable();
     table.string("last_name").notNullable();
-    table.string("email").notNullable().unique();
     table.string("password").notNullable();
+    table.integer("email_id").unsigned().references("id").inTable("email");
+  });
+
+  await knex.schema.createTable("employee", (table) => {
+    table.increments().notNullable();
     table.decimal("hourly_rate", 14, 2);
     table.boolean("is_admin").notNullable();
+    table.integer("email_id").unsigned().references("id").inTable("email");
   });
 
   await knex.schema.createTable("timesheet_entry", (table) => {
@@ -43,7 +52,14 @@ export async function up(knex: Knex): Promise<void> {
 
 export async function down(knex: Knex): Promise<void> {
   await Promise.all(
-    ["includes", "timesheet_entry", "user", "bonus_item"].map((tableName) => {
+    [
+      "includes",
+      "timesheet_entry",
+      "user",
+      "bonus_item",
+      "employee",
+      "email",
+    ].map((tableName) => {
       return knex.schema.dropTableIfExists(tableName);
     })
   );

@@ -10,13 +10,13 @@ export async function up(knex: Knex): Promise<void> {
     table.string("first_name").notNullable();
     table.string("last_name").notNullable();
     table.string("password").notNullable();
+    table.boolean("is_admin").defaultTo(false).notNullable();
     table.integer("email_id").unsigned().references("id").inTable("email");
   });
 
   await knex.schema.createTable("employee", (table) => {
     table.increments().notNullable();
     table.decimal("hourly_rate", 14, 2);
-    table.boolean("is_admin").notNullable();
     table.integer("email_id").unsigned().references("id").inTable("email");
   });
 
@@ -25,7 +25,7 @@ export async function up(knex: Knex): Promise<void> {
     table.integer("miles");
     table.decimal("hours", 14, 2);
     table.date("date").notNullable();
-    table.integer("user_id").unsigned().references("id").inTable("user");
+    table.integer("emp_id").unsigned().references("id").inTable("employee");
   });
 
   await knex.schema.createTable("bonus_item", (table) => {

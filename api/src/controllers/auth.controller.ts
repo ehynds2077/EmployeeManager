@@ -40,6 +40,13 @@ export const register = async (
       var email_id: number = await addEmail(email);
       // Add User to users table
       await addUser(first_name, last_name, email_id, hashedPass, admin);
+      res.json({
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        password: password,
+        admin: admin,
+      });
       res.status(200).send();
     } else {
       // Check if email has been added by admin
@@ -50,6 +57,13 @@ export const register = async (
         // If email has been added, add user to users table
       } else {
         await addUser(first_name, last_name, emailID, hashedPass, admin);
+        res.json({
+          first_name: first_name,
+          last_name: last_name,
+          email: email,
+          password: password,
+          admin: admin,
+        });
         res.status(200).send();
       }
     }
@@ -67,6 +81,10 @@ export const AdminAddEmployee = async (
     const { email, rate } = req.body;
     var email_id = await addEmail(email);
     await addEmployee(rate, email_id);
+    res.json({
+      email: email,
+      rate: rate,
+    });
     res.status(200).send();
   } catch (err) {
     next(err);

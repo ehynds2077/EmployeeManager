@@ -37,7 +37,7 @@ export async function up(knex: Knex): Promise<void> {
     table.integer("del_rate_wet").notNullable();
   });
 
-  await knex.schema.createTable("includes", (table) => {
+  await knex.schema.createTable("item_entry", (table) => {
     table.boolean("wet_unit").notNullable();
     table.boolean("num_emps").notNullable();
     table
@@ -53,7 +53,7 @@ export async function up(knex: Knex): Promise<void> {
 export async function down(knex: Knex): Promise<void> {
   await Promise.all(
     [
-      "includes",
+      "item_entry",
       "timesheet_entry",
       "user",
       "bonus_item",

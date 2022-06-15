@@ -71,7 +71,7 @@ export const getUserByEmail = async (email: string) => {
       this.on("user.email_id", "=", "email.id");
     });
 
-  console.log(curUser);
+  // console.log(curUser);
   if (curUser.length) {
     return curUser[0];
   } else {

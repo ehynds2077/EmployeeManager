@@ -44,6 +44,15 @@ export const getEmailByID = async (emailID: number) => {
   }
 };
 
+export const checkForUser = async (emailID: number) => {
+  const ret = await pg.select().table(tableName).where("email_id", emailID);
+  if (ret.length) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 export const addUser = async (
   fName: string,
   lName: string,
@@ -51,12 +60,11 @@ export const addUser = async (
   password: string,
   admin: boolean
 ) => {
-  // Need to check if email exists already and throw error if it does
-  const emailExists = await getEmailByID(email_id);
-  console.log(`emailExists: ${emailExists}`);
-  if (emailExists) {
+  const userExists = await checkForUser(email_id);
+  if (userExists) {
     throw new Error("User with this email already exists");
   }
+
   const result = await pg.table(tableName).insert({
     first_name: fName,
     last_name: lName,

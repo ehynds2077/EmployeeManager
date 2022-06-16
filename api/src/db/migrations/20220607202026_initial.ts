@@ -35,7 +35,7 @@ export async function up(knex: Knex): Promise<void> {
 
   await knex.schema.createTable("bonus_item", (table) => {
     table.increments().notNullable();
-    table.boolean("name").notNullable();
+    table.string("name").notNullable();
     table.integer("pickup_rate_dry").notNullable();
     table.integer("pickup_rate_wet").notNullable();
     table.integer("del_rate_dry").notNullable();
@@ -44,7 +44,7 @@ export async function up(knex: Knex): Promise<void> {
 
   await knex.schema.createTable("item_entry", (table) => {
     table.boolean("wet_unit").notNullable();
-    table.boolean("num_emps").notNullable();
+    table.integer("num_emps").notNullable();
     table
       .integer("entry_id")
       .unsigned()

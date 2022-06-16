@@ -10,13 +10,19 @@ export interface ItemEntry {
 }
 
 export const addItemEntry = async (
+  entryID: number,
   itemId: number,
   wetUnit: boolean,
   numEmps: number
 ) => {
   const addItem = await pg
     .table(tableName)
-    .insert({ item_id: itemId, wet_unit: wetUnit, num_emps: numEmps })
-    .returning("id");
-  return addItem[0].id;
+    .insert({
+      entry_id: entryID,
+      item_id: itemId,
+      wet_unit: wetUnit,
+      num_emps: numEmps,
+    });
+
+  return addItem[0];
 };

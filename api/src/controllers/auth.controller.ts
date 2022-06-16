@@ -18,6 +18,7 @@ export const register = async (
   next: NextFunction
 ) => {
   const { email, password, first_name, last_name, admin } = req.body;
+  const isAdmin: boolean = admin === "true";
 
   try {
     if (!email || !password) {
@@ -34,19 +35,19 @@ export const register = async (
     req.body.password = hashedPass;
 
     // If user is admin, add them into user table
-    if (admin === "true") {
+    if (isAdmin) {
       console.log("admin here");
       // Add email to emails table
       var email_id: number = await addEmail(email);
       console.log("email added");
       // Add User to users table
-      await addUser(first_name, last_name, email_id, hashedPass, admin);
+      await addUser(first_name, last_name, email_id, hashedPass, isAdmin);
       res.json({
         first_name: first_name,
         last_name: last_name,
         email: email,
         password: password,
-        admin: admin,
+        admin: isAdmin,
       });
       res.status(200).send();
     } else {
@@ -57,36 +58,17 @@ export const register = async (
         throw new Error("Email not authorized");
         // If email has been added, add user to users table
       } else {
-        await addUser(first_name, last_name, emailID, hashedPass, admin);
+        await addUser(first_name, last_name, emailID, hashedPass, isAdmin);
         res.json({
           first_name: first_name,
           last_name: last_name,
           email: email,
           password: password,
-          admin: admin,
+          admin: isAdmin,
         });
         res.status(200).send();
       }
     }
-  } catch (err) {
-    next(err);
-  }
-};
-
-export const AdminAddEmployee = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const { email, rate } = req.body;
-    var email_id = await addEmail(email);
-    await addEmployee(rate, email_id);
-    res.json({
-      email: email,
-      rate: rate,
-    });
-    res.status(200).send();
   } catch (err) {
     next(err);
   }

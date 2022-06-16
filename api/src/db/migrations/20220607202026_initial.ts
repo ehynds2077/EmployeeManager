@@ -11,7 +11,12 @@ export async function up(knex: Knex): Promise<void> {
     table.string("last_name").notNullable();
     table.string("password").notNullable();
     table.boolean("is_admin").defaultTo(false).notNullable();
-    table.integer("email_id").unsigned().references("id").inTable("email");
+    table
+      .integer("email_id")
+      .unique()
+      .unsigned()
+      .references("id")
+      .inTable("email");
   });
 
   await knex.schema.createTable("employee", (table) => {

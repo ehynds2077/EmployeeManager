@@ -5,7 +5,7 @@ import {
   addEmail,
   getUserByEmail,
   User,
-  emailSearch,
+  getEmailByName,
   addEmployee,
 } from "../models/User";
 
@@ -38,6 +38,7 @@ export const register = async (
       console.log("admin here");
       // Add email to emails table
       var email_id: number = await addEmail(email);
+      console.log("email added");
       // Add User to users table
       await addUser(first_name, last_name, email_id, hashedPass, admin);
       res.json({
@@ -50,7 +51,7 @@ export const register = async (
       res.status(200).send();
     } else {
       // Check if email has been added by admin
-      var emailID = await emailSearch(email);
+      var emailID = await getEmailByName(email);
       // If email has not been added, throw error
       if (!emailID) {
         throw new Error("Email not authorized");

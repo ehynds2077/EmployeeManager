@@ -22,4 +22,5 @@ export const createEntry = async (
     miles: miles,
     emp_id: emp_id,
   });
+  return result[0];
 };

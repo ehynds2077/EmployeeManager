@@ -24,13 +24,32 @@ export const addEmail = async (email: string) => {
   }
 };
 
-export const emailSearch = async (email: string) => {
+export const getEmailByName = async (email: string) => {
   const ret = await pg.select().table("email").where("email", email);
   if (ret.length) {
     console.log(ret[0].id);
     return ret[0].id;
   } else {
     return null;
+  }
+};
+
+export const getEmailByID = async (emailID: number) => {
+  const ret = await pg.select().table("email").where("id", emailID);
+  if (ret.length) {
+    console.log(ret[0].email);
+    return ret[0].email;
+  } else {
+    return null;
+  }
+};
+
+export const checkForUser = async (emailID: number) => {
+  const ret = await pg.select().table(tableName).where("email_id", emailID);
+  if (ret.length) {
+    return true;
+  } else {
+    return false;
   }
 };
 
@@ -41,6 +60,11 @@ export const addUser = async (
   password: string,
   admin: boolean
 ) => {
+  const userExists = await checkForUser(email_id);
+  if (userExists) {
+    throw new Error("User with this email already exists");
+  }
+
   const result = await pg.table(tableName).insert({
     first_name: fName,
     last_name: lName,
@@ -58,51 +82,19 @@ export const addEmployee = async (rate: number, email_id: number) => {
   });
 };
 
-// export const AdminAddEmployee = async (email: string, rate: number) => {
-//   var email_id: number = await addEmail(email);
-//   await addEmployee(rate, email_id);
-// };
-
 export const getUserByEmail = async (email: string) => {
   const curUser = await pg
     .select("first_name", "last_name", "email", "password")
     .from("user")
     .join("email", function () {
       this.on("user.email_id", "=", "email.id");
-    });
+    })
+    .where("email", email);
 
-  // console.log(curUser);
+  console.log(curUser);
   if (curUser.length) {
     return curUser[0];
   } else {
     return null;
   }
 };
-
-// export const getUserByID = async (id: string) => {
-//   const users = await pg.select().table(tableName).where("id", id);
-//   if (users.length) {
-//     return users[0];
-//   } else {
-//     return null;
-//   }
-// };
-
-// export const addUser = async (
-//   fName: string,
-//   lName: string,
-//   email: string,
-//   password: string,
-//   rate: number,
-//   admin: boolean
-// ) => {
-//   const result = await pg.table(tableName).insert({
-//     first_name: fName,
-//     last_name: lName,
-//     email: email,
-//     hourly_rate: rate,
-//     password: password,
-//     is_admin: admin,
-//   });
-//   console.log(result);
-// };

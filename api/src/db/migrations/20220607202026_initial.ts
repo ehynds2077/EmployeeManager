@@ -5,7 +5,7 @@ export async function up(knex: Knex): Promise<void> {
     table.increments().notNullable();
     table.string("email").unique().notNullable();
   });
-  await knex.schema.createTable("user", (table) => {
+  await knex.schema.createTable("users", (table) => {
     table.increments("id").notNullable();
     table.string("first_name").notNullable();
     table.string("last_name").notNullable();
@@ -31,18 +31,17 @@ export async function up(knex: Knex): Promise<void> {
     table.decimal("hours", 14, 2);
     table.date("date").notNullable();
     table.integer("emp_id").unsigned().references("id").inTable("employee");
+    table.unique(["date", "emp_id"]);
   });
 
   await knex.schema.createTable("bonus_item", (table) => {
     table.increments().notNullable();
     table.string("name").notNullable();
-    table.integer("pickup_rate_dry").notNullable();
-    table.integer("pickup_rate_wet").notNullable();
-    table.integer("del_rate_dry").notNullable();
-    table.integer("del_rate_wet").notNullable();
   });
 
   await knex.schema.createTable("item_entry", (table) => {
+    table.increments().notNullable();
+    table.boolean("pickup").notNullable();
     table.boolean("wet_unit").notNullable();
     table.integer("num_emps").notNullable();
     table
@@ -51,7 +50,15 @@ export async function up(knex: Knex): Promise<void> {
       .references("id")
       .inTable("timesheet_entry");
     table.integer("item_id").unsigned().references("id").inTable("bonus_item");
-    table.primary(["entry_id", "item_id"]);
+  });
+
+  await knex.schema.createTable("rates", (table) => {
+    table.increments().notNullable();
+    table.integer("pickup_rate_dry").notNullable();
+    table.integer("pickup_rate_wet").notNullable();
+    table.integer("del_rate_dry").notNullable();
+    table.integer("del_rate_wet").notNullable();
+    table.integer("item_id").unsigned().references("id").inTable("bonus_item");
   });
 }
 
@@ -60,7 +67,8 @@ export async function down(knex: Knex): Promise<void> {
     [
       "item_entry",
       "timesheet_entry",
-      "user",
+      "users",
+      "rates",
       "bonus_item",
       "employee",
       "email",

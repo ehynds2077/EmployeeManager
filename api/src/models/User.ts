@@ -1,7 +1,7 @@
 import knex from "knex";
 import pg from "../db";
 
-const tableName = "user";
+const tableName = "users";
 
 export interface User {
   fName?: string;

@@ -24,14 +24,20 @@ export const addBonusItem = async (
       .table(tableName)
       .insert({
         name: name,
-        pickup_rate_dry: pickupRateDry,
-        pickup_rate_wet: pickupRateWet,
-        del_rate_dry: deliveryRateDry,
-        del_rate_wet: deliveryRateWet,
       })
       .returning("id");
-    console.log(addBonusItem[0].id);
-    return addBonusItem[0].id;
+
+    await pg.table("rates").insert({
+      item_id: addBonusItem[0].id,
+      pickup_rate_dry: pickupRateDry,
+      pickup_rate_wet: pickupRateWet,
+      del_rate_dry: deliveryRateDry,
+      del_rate_wet: deliveryRateWet,
+    });
+    // addBonusItem;
+    // addItemRates;
+    // console.log(addBonusItem[0].id);
+    // return addBonusItem[0].id;
   } catch (err) {
     throw new Error("Error adding item to DB");
   }

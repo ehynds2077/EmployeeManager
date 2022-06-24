@@ -1,0 +1,895 @@
+{
+	"info": {
+		"_postman_id": "88e8d660-3cee-485d-811f-55c935a9f398",
+		"name": "EmployeeManager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16661737"
+	},
+	"item": [
+		{
+			"name": "RegisterAdmin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "admin@admin.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "adminPassword",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "admin_first",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "admin_last",
+							"type": "text"
+						},
+						{
+							"key": "admin",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:4000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddEmployee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "emp@email.com",
+							"type": "text"
+						},
+						{
+							"key": "rate",
+							"value": "20.00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addEmployee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addEmployee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddEmployee2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "emp2@email.com",
+							"type": "text"
+						},
+						{
+							"key": "rate",
+							"value": "18.00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addEmployee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addEmployee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterEmployee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "emp@email.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "emp1password",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "emp_first",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "emp_last",
+							"type": "text"
+						},
+						{
+							"key": "admin",
+							"value": "false",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterEmployee2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "emp2@email.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "emp2Password",
+							"type": "text"
+						},
+						{
+							"key": "first_name",
+							"value": "emp2_first",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "emp2_last",
+							"type": "text"
+						},
+						{
+							"key": "admin",
+							"value": "false",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Bonus Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "riptide",
+							"type": "text"
+						},
+						{
+							"key": "pickupRateDry",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "pickupRateWet",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "deliveryRateDry",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "deliveryRateWet",
+							"value": "10",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addItem",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addItem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Bonus Item 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "double splash",
+							"type": "text"
+						},
+						{
+							"key": "pickupRateDry",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "pickupRateWet",
+							"value": "30",
+							"type": "text"
+						},
+						{
+							"key": "deliveryRateDry",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "deliveryRateWet",
+							"value": "15",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addItem",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addItem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Employee Add Bonus",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "entryID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "itemID",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "wetUnit",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "numEmps",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pickup",
+							"value": "false",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addBonus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addBonus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Employee Add Bonus 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "entryID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "itemID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "wetUnit",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "numEmps",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pickup",
+							"value": "false",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addBonus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addBonus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Employee Add Bonus 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "entryID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "itemID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "wetUnit",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "numEmps",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pickup",
+							"value": "false",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addBonus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addBonus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Employee Add Bonus 4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "entryID",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "itemID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "wetUnit",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "numEmps",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "pickup",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addBonus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addBonus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Employee Add Bonus 5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "entryID",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "itemID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "wetUnit",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "numEmps",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "pickup",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addBonus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addBonus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Timesheet Entry",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "miles",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "hours",
+							"value": "6",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "06/16/2022",
+							"type": "text"
+						},
+						{
+							"key": "empID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addEntry",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addEntry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Timesheet Entry 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "miles",
+							"value": "120",
+							"type": "text"
+						},
+						{
+							"key": "hours",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "06/17/2022",
+							"type": "text"
+						},
+						{
+							"key": "empID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addEntry",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addEntry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Timesheet Entry 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "miles",
+							"value": "190",
+							"type": "text"
+						},
+						{
+							"key": "hours",
+							"value": "12",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "06/18/2022",
+							"type": "text"
+						},
+						{
+							"key": "empID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addEntry",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addEntry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Timesheet Entry 4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "miles",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "hours",
+							"value": "6",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "06/22/2022",
+							"type": "text"
+						},
+						{
+							"key": "empID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addEntry",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addEntry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Timesheet Entry 5",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "miles",
+							"value": "85",
+							"type": "text"
+						},
+						{
+							"key": "hours",
+							"value": "8",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "06/18/2022",
+							"type": "text"
+						},
+						{
+							"key": "empID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addEntry",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addEntry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Timesheet Entry 6",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "miles",
+							"value": "150",
+							"type": "text"
+						},
+						{
+							"key": "hours",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "06/21/2022",
+							"type": "text"
+						},
+						{
+							"key": "empID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/addEntry",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"addEntry"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Miles & Hours",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:4000/getMilesHours?beginDate=06/15/2022&endDate=06/20/2022&empID=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"getMilesHours"
+					],
+					"query": [
+						{
+							"key": "beginDate",
+							"value": "06/15/2022"
+						},
+						{
+							"key": "endDate",
+							"value": "06/20/2022"
+						},
+						{
+							"key": "empID",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

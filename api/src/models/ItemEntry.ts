@@ -7,22 +7,23 @@ export interface ItemEntry {
   itemID: number;
   wetUnit: boolean;
   numEmps: number;
+  pickup: boolean;
 }
 
 export const addItemEntry = async (
   entryID: number,
   itemId: number,
   wetUnit: boolean,
-  numEmps: number
+  numEmps: number,
+  pickup: boolean
 ) => {
-  const addItem = await pg
-    .table(tableName)
-    .insert({
-      entry_id: entryID,
-      item_id: itemId,
-      wet_unit: wetUnit,
-      num_emps: numEmps,
-    });
+  const addItem = await pg.table(tableName).insert({
+    entry_id: entryID,
+    item_id: itemId,
+    wet_unit: wetUnit,
+    num_emps: numEmps,
+    pickup: pickup,
+  });
 
   return addItem[0];
 };

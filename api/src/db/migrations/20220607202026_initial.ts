@@ -22,6 +22,7 @@ export async function up(knex: Knex): Promise<void> {
   await knex.schema.createTable("employee", (table) => {
     table.increments().notNullable();
     table.decimal("hourly_rate", 14, 2);
+    table.decimal("miles_rate", 14, 2);
     table.integer("email_id").unsigned().references("id").inTable("email");
   });
 

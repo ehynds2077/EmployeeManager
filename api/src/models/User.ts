@@ -53,6 +53,24 @@ export const checkForUser = async (emailID: number) => {
   }
 };
 
+export const getEmployeeByID = async (empID: number) => {
+  const ret = await pg
+    .select({
+      employeeID: "employee.id",
+      fName: "first_name",
+      lName: "last_name",
+    })
+    .from(tableName)
+    .join("email", function () {
+      this.on("email.id", "=", "users.email_id");
+    })
+    .join("employee", function () {
+      this.on("employee.email_id", "=", "users.email_id");
+    });
+
+  return ret;
+};
+
 export const addUser = async (
   fName: string,
   lName: string,
@@ -65,21 +83,40 @@ export const addUser = async (
     throw new Error("User with this email already exists");
   }
 
-  const result = await pg.table(tableName).insert({
-    first_name: fName,
-    last_name: lName,
-    password: password,
-    is_admin: admin,
-    email_id: email_id,
-  });
-  console.log(result);
+  const result = await pg
+    .table(tableName)
+    .insert({
+      first_name: fName,
+      last_name: lName,
+      password: password,
+      is_admin: admin,
+      email_id: email_id,
+    })
+    .returning([
+      "id",
+      "first_name",
+      "last_name",
+      "password",
+      "is_admin",
+      "email_id",
+    ]);
+  return result;
 };
 
-export const addEmployee = async (rate: number, email_id: number) => {
-  const result = await pg.table("employee").insert({
-    hourly_rate: rate,
-    email_id: email_id,
-  });
+export const addEmployee = async (
+  hourlyRate: number,
+  milesRate: number,
+  email_id: number
+) => {
+  const result = await pg
+    .table("employee")
+    .insert({
+      hourly_rate: hourlyRate,
+      miles_rate: milesRate,
+      email_id: email_id,
+    })
+    .returning(["id", "hourly_rate", "miles_rate", "email_id"]);
+  return result[0];
 };
 
 export const getUserByEmail = async (email: string) => {

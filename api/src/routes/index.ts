@@ -10,7 +10,9 @@ import { protectRoute } from "../middleware/protectRoute";
 import {
   addBonus,
   addTimesheetEntry,
+  getEmpBonusItemDetails,
   getEmpHoursMiles,
+  getEmpTotal,
 } from "../controllers/employee.controller";
 
 export const router = express.Router();
@@ -24,4 +26,6 @@ router.post("/addEmployee", adminAddEmployee);
 router.post("/addBonus", addBonus);
 router.post("/addEntry", addTimesheetEntry);
 router.get("/getMilesHours", getEmpHoursMiles);
+router.get("/getBonusDetails", getEmpBonusItemDetails);
+router.get("/getEmployeeTotal", getEmpTotal);
 // router.get("/protected", protectRoute, protectedStuff);

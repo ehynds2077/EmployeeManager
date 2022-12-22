@@ -8,13 +8,10 @@ export const adminAddEmployee = async (
   next: NextFunction
 ) => {
   try {
-    const { email, rate } = req.body;
+    const { email, hourlyRate, milesRate } = req.body;
     var email_id = await addEmail(email);
-    await addEmployee(rate, email_id);
-    res.json({
-      email: email,
-      rate: rate,
-    });
+    const ret = await addEmployee(hourlyRate, milesRate, email_id);
+    res.json(ret);
     res.status(200).send();
   } catch (err) {
     next(err);
